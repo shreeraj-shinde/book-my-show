@@ -6,7 +6,7 @@ const HeroCrousel = () => {
   const [images, setImages] = useState([
     {
       adult: false,
-      backdrop_path: "/wD2kUCX1Bb6oeIb2uz7kbdfLP6k.jpg",
+      backdrop_path: "https://www.omdb.org/image/medium/19074.jpeg?v=2",
       genre_ids: [27, 53],
       id: 980078,
       original_language: "en",
@@ -23,7 +23,7 @@ const HeroCrousel = () => {
     },
     {
       adult: false,
-      backdrop_path: "/i8dshLvq4LE3s0v8PrkDdUyb1ae.jpg",
+      backdrop_path: "https://www.omdb.org/image/medium/19074.jpeg?v=2",
       genre_ids: [28, 53, 80],
       id: 603692,
       original_language: "en",
@@ -45,8 +45,8 @@ const HeroCrousel = () => {
     slidesToShow: 1,
     speed: 500,
     slideToScroll: 1,
-    nextArrow: <NextArrow />,
-    prevArrow: <PrevArrow />,
+    nextArrow: <NextArrow className="slick-next" />,
+    prevArrow: <PrevArrow className="slick-prev" />,
   };
 
   const settings = {
@@ -60,11 +60,11 @@ const HeroCrousel = () => {
   return (
     <>
       <div className="lg:hidden ">
-        <Slider>
+        <Slider {...settings}>
           {images.map((image) => (
             <div className="w-full h-56 md:h-80 py-3">
               <img
-                src={`https://image.tmdb.org/t/p/orignal${images.backdrop_path}`}
+                src={image.backdrop_path}
                 alt="Hero Banner"
                 className="w-full h-full rounded-md object-coverS"
               />
@@ -73,11 +73,11 @@ const HeroCrousel = () => {
         </Slider>
       </div>
       <div className="hidden lg:block">
-        <Slider>
+        <Slider {...settingsLG}>
           {images.map((image) => (
             <div className="w-full h-96 px-2 py-3">
               <img
-                src={`https://image.tmdb.org/t/p/orignal${images.backdrop_path}`}
+                src={image.backdrop_path}
                 alt="Hero Banner"
                 className="w-full h-full rounded-md object-cover"
               />

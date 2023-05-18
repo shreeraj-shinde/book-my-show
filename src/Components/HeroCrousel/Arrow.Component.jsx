@@ -5,7 +5,7 @@ export function NextArrow(props) {
     <>
       <div
         className={props.className}
-        style={{ ...props.style }}
+        style={{ ...props.style, display: "block", background: "red" }}
         onClick={props.onClick}
       />
     </>
