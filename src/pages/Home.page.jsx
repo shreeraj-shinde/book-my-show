@@ -13,6 +13,7 @@ const Homepage = () => {
   const [recommendedMovies, setrecommendedMovies] = useState([]);
   const [premierMovies, setpremierMovies] = useState([]);
   const [onlineStreamEvents, setonlineStreamEvents] = useState([]);
+  const [images, setImages] = useState([]);
 
   useEffect(() => {
     const requestRecommendedMovies = async () => {
@@ -23,9 +24,9 @@ const Homepage = () => {
     requestRecommendedMovies();
 
     const requestTopRatedMovies = async () => {
-      const getTopRatedMovies = await axios.get("movie/top_rated/");
+      const getTopRatedMovies = await axios.get("movie/top_rated");
       setpremierMovies(getTopRatedMovies.data.results);
-      console.log(getTopRatedMovies.data.results);
+      console.log("Top rated:", getTopRatedMovies.data.results);
     };
     requestTopRatedMovies();
 
@@ -36,9 +37,17 @@ const Homepage = () => {
     requestPlayingNowMovies();
   }, []);
 
+  useEffect(() => {
+    const getImages = async () => {
+      const get_images = await axios.get("movie/top_rated");
+      setImages(get_images.data.results);
+      console.log(images);
+    };
+    getImages();
+  }, []);
   return (
     <>
-      <HeroCrousel />
+      <HeroCrousel images={images} />
 
       <div className="container mx-auto px-4 md:px-12 my-8">
         <h1 className="text-2xl font-bold text-gray-800 sm:ml-3 ml-0 my-3">
